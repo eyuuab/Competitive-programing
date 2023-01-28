@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n;
+    cin>>m>>n;
+    int ans=m*n;
+    int maxD=ans/2;
+    cout<<maxD;
+    return 0;
+    
+}
