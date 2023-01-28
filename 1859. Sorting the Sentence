@@ -1,0 +1,42 @@
+#include <cstdlib>
+
+class Solution {
+public:
+    string sortSentence(string s) {
+        stringstream ss(s);
+        string word;
+        vector<string>v;
+        while(ss >> word)        
+        {
+            v.push_back(word);
+        }
+        vector<string>ans(v.size()+1);
+
+       for(int i=0;i<v.size();i++) 
+        {
+            int n=v[i].length();
+            ans[(int)v[i][n-1]-48]=v[i]; 
+        }
+
+        string ans2;
+        for(int i=0;i<ans.size();i++)
+        {
+            ans2+=ans[i];
+            ans2+=" ";
+        }
+        string final;
+        for(int i=0;i<ans2.size();i++)
+        {
+         if(!isdigit(ans2[i]))
+           {
+             final=final+ans2[i];
+           }
+        }
+        string final2;
+        for(int i=1;i<final.size()-1;i++)
+        {
+            final2+=final[i];
+        }
+         return final2;
+    }
+};
