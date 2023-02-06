@@ -1,0 +1,23 @@
+class Solution {
+public:
+    std::string reverseParentheses(std::string s) {
+        std::stack<int16_t> st;
+        for(int16_t i = 0; i < s.size(); i++)
+        {
+            if(s[i] == '(')
+            {
+                st.push(i);
+                s.erase(s.begin() + i);
+                i--;
+            }
+            else if(s[i] == ')')
+            {
+                s.erase(s.begin() + i);
+                std::reverse(s.begin() + st.top(), s.begin() + i);
+                st.pop();
+                i--;
+            }
+        }
+        return s;
+    }
+};
