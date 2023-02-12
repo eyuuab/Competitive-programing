@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int helper(vector<int>& nums, int x, int y){
+        int n = nums.size();
+        vector<int> dp1(n, 0);
+        int s1 = 0;
+        for(int i=0; i<n; i++){
+            if(i < x-1)
+                s1 += nums[i];
+            else if(i == x-1){
+                s1 += nums[i];
+                dp1[i] = s1;
+            }
+            else{
+                s1 = s1 + nums[i] - nums[i - x];
+                dp1[i] = max(dp1[i-1], s1);
+            }
+        }
+        vector<int> dp2(n, 0);
+        int s2 = 0;
+        for(int i=n-1; i>=0; i--){
+            if(y + i > n)
+                s2 += nums[i];
+            else if(y + i == n){
+                s2 += nums[i];
+                dp2[i] = s2;
+            }
+            else{
+                s2 = s2 + nums[i] - nums[i + y];
+                dp2[i] = max(dp2[i+1], s2);
+            }
+        }
+        int max_sum = 0, i = x - 1;
+        while(i + y < n){
+            if(dp1[i]+dp2[i+1] > max_sum)
+                max_sum = dp1[i] + dp2[i+1];
+            i++;
+        }
+       return max_sum;
+    }
+    int maxSumTwoNoOverlap(vector<int>& nums, int firstLen, int secondLen) {
+        if(firstLen == secondLen)
+            return helper(nums, firstLen, secondLen);
+        else
+            return max(helper(nums, firstLen, secondLen), helper(nums, secondLen, firstLen));
+    }
+};
