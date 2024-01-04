@@ -50,8 +50,7 @@ class Solution:
             left(row, col - 1)
             up(row - 1, col)
             down(row + 1, col)
-            mat[g[0]][g[1]]='g'
-            
+            mat[g[0]][g[1]]='g' 
         cnt=0
         for row in range(m):
             for col in range(n):
