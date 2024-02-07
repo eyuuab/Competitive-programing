@@ -4,5 +4,5 @@ class Solution:
         ans = []
         for i in range(len(nums)):
             prefix_sum += nums[i]
-            ans.append(prefix_sum)
-        return ans
+            nums[i]=prefix_sum
+        return nums
